@@ -1,0 +1,3 @@
+name: PlayerSaver
+version: '${project.version}'
+main: com.ccs.playersaver.playersaver.PlayerSaver
