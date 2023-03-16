@@ -26,9 +26,7 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        for (File file : playerFiles.values()) {
-            file.delete();
-        }
+
     }
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
