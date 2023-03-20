@@ -9,6 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 public final class PlayerSaver extends JavaPlugin implements Listener{
@@ -32,10 +34,13 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
     public void onPlayerJoin(PlayerJoinEvent event) {
         String ip = event.getPlayer().getAddress().getAddress().getHostAddress();
         String playerName = event.getPlayer().getName();
+        String uuid = event.getPlayer().getUniqueId().toString();
         File playerFile = getPlayerFile(ip);
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
         try {
             FileWriter writer = new FileWriter(playerFile, true);
-            writer.write(playerName + "\n");
+            writer.write("Nick: "+playerName + " UUID: "+uuid+" Time of connecting: "+time+"\n");
             writer.flush();
             writer.close();
         } catch (IOException e) {
