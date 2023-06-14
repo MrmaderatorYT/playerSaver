@@ -1,3 +1,4 @@
 name: PlayerSaver
 version: '${project.version}'
 main: com.ccs.playersaver.playersaver.PlayerSaver
+api-version: 1.8

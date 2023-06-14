@@ -13,15 +13,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+
 public final class PlayerSaver extends JavaPlugin implements Listener{
 
     private Map<String, File> playerFiles;
-
+    private PlayerDataManager playerDataManager;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
+        playerDataManager = new PlayerDataManager(this);
         playerFiles = new HashMap<>();
     }
 
@@ -30,6 +32,7 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
         // Plugin shutdown logic
 
     }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         String ip = event.getPlayer().getAddress().getAddress().getHostAddress();
@@ -50,7 +53,7 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
 
     private File getPlayerFile(String ip) {
         if (!playerFiles.containsKey(ip)) {
-            File dataFolder = getDataFolder();
+            File dataFolder = new File(getDataFolder(), "Ips");
             if (!dataFolder.exists()) {
                 dataFolder.mkdirs();
             }
