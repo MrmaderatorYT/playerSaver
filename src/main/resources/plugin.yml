@@ -2,3 +2,8 @@ name: PlayerSaver
 version: '${project.version}'
 main: com.ccs.playersaver.playersaver.PlayerSaver
 api-version: 1.8
+commands:
+  ps:
+    description: Show 20 lines of file
+    usage: /<command>
+    permission: ps.use

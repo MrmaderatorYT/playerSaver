@@ -23,6 +23,7 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
+        getCommand("ps").setExecutor(new Commands(this));
         playerDataManager = new PlayerDataManager(this);
         playerFiles = new HashMap<>();
     }
@@ -43,7 +44,7 @@ public final class PlayerSaver extends JavaPlugin implements Listener{
 
         try {
             FileWriter writer = new FileWriter(playerFile, true);
-            writer.write("Nick: "+playerName + " UUID: "+uuid+" Time of connecting: "+time+"\n");
+            writer.write("Nick: "+playerName + " UUID: "+uuid+" Time of connecting: "+time+ "\n");
             writer.flush();
             writer.close();
         } catch (IOException e) {
